@@ -14,9 +14,9 @@ from django.core.asgi import get_asgi_application
 from channels.auth import AuthMiddlewareStack
 from channels.routing import ProtocolTypeRouter, URLRouter
 
-from jokes.routing import ws_urlpatterns
+from bart.routing import ws_urlpatterns
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'jokes_project.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'main_app.settings')
 
 application = ProtocolTypeRouter({
     'http': get_asgi_application(),

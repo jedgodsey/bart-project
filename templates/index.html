@@ -6,24 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-    <title>jokes app</title>
+    <title>BART App</title>
 </head>
 <body>
     <div class="container">
         <div class="row">
             <div class="col-8 mx-auto mt-5">
-                <h3 id="jokes">
+                <h3 id="trains">
                     {{ text }}
                 </h3>
             </div>
         </div>
     </div>
     <script>
-        let socket = new WebSocket('ws://localhost:8000/ws/jokes/')
+        let socket = new WebSocket('ws://localhost:8000/ws/bart/')
         socket.onmessage = (event) => {
-            let joke = event.data
-            console.log('your joke: ', joke)
-            document.querySelector('#jokes').innerText = joke;
+            let trains = event.data
+            document.querySelector('#trains').innerText = trains;
         }
     </script>
 </body>

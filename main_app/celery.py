@@ -1,15 +1,15 @@
 import os
 from celery import Celery
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'jokes_project.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'main_app.settings')
 
-app = Celery('jokes_project')
+app = Celery('main_app')
 
 app.config_from_object('django.conf:settings', namespace='CELERY')
 
 app.conf.beat_schedule = {
-    'get_joke_3s': {
-        'task': 'jokes.tasks.get_joke',
+    'get_train_1s': {
+        'task': 'bart.tasks.get_train',
         'schedule': 3.0
     }
 }

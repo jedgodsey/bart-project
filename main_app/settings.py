@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'channels',
-    'jokes',
+    'bart',
 ]
 
 MIDDLEWARE = [
@@ -51,7 +51,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'jokes_project.urls'
+ROOT_URLCONF = 'main_app.urls'
 
 TEMPLATES = [
     {
@@ -71,8 +71,8 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'jokes_project.wsgi.application'
-ASGI_APPLICATION = 'jokes_project.asgi.application'
+WSGI_APPLICATION = 'main_app.wsgi.application'
+ASGI_APPLICATION = 'main_app.asgi.application'
 
 CELERY_BROKER_URL = 'redis://localhost:6379'
 
