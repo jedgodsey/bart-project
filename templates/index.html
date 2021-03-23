@@ -19,9 +19,10 @@
         </div>
     </div>
     <script>
-        let socket = new WebSocket('ws://localhost:8000/ws/bart/')
+        let socket = new WebSocket('ws://localhost:8000/ws/trains/')
         socket.onmessage = (event) => {
             let trains = event.data
+            console.log(trains)
             document.querySelector('#trains').innerText = trains;
         }
     </script>
