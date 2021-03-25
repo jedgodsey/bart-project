@@ -27,14 +27,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = env("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
-    'bart-application.herokuapp.com'
+    # 'bart-application.herokuapp.com',
 ]
-
-
-# Application definition
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -89,15 +86,28 @@ CELERY_BROKER_URL = 'redis://localhost:6379'
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
+        'NAME': 'delays', #should be 'BART-db'?
         'CLIENT': {
-            'name': 'delays',#should be 'BART-db'?
             'host': env('MONGO_CONNECT'),
-            'username': 'BART0321',
-            'password': env('MONGO_PASS'),
-            'authMechanism': 'SCRAM-SHA-1',
+            # 'username': 'BART0321',
+            # 'password': env('MONGO_PASS'),
+            # 'authMechanism': 'SCRAM-SHA-1',
         },
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'djongo',
+#         'CLIENT': {
+#             'name': 'delays',#should be 'BART-db'?
+#             'host': env('MONGO_CONNECT'),
+#             'username': 'BART0321',
+#             'password': env('MONGO_PASS'),
+#             'authMechanism': 'SCRAM-SHA-1',
+#         },
+#     }
+# }
 
 # DATABASES = {
 #     'default': {
