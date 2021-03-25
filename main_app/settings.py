@@ -25,7 +25,9 @@ SECRET_KEY = 'efxo7r=0zl^4%hsy4julurraa-37crru6+5*a-8xd(nqeyqln!'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'bart-application.herokuapp.com'
+]
 
 
 # Application definition
