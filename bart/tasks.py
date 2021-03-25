@@ -3,6 +3,7 @@ from functools import reduce
 from asgiref.sync import async_to_sync
 from channels.layers import get_channel_layer
 from celery import shared_task
+from .models import Delays
 
 channel_layer = get_channel_layer()
 
@@ -23,6 +24,9 @@ def get_train():
     def do_sum(x, y):
         return x + y
     num_stations = len(stations)
-    avg_delay = str(reduce(do_sum, delays) / num_stations)
+    avg_delay = reduce(do_sum, delays) / num_stations
+    # avg_delay = str(reduce(do_sum, delays) / num_stations)
+    datum = Delays(amount=avg_delay)
+    datum.save()
     
-    async_to_sync(channel_layer.group_send)('trains', {'type': 'send_trains', 'text': avg_delay})
+    async_to_sync(channel_layer.group_send)('trains', {'type': 'send_trains', 'text': str(avg_delay)})
