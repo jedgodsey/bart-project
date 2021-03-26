@@ -77,7 +77,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'main_app.wsgi.application'
 ASGI_APPLICATION = 'main_app.asgi.application'
 
-CELERY_BROKER_URL = 'redis://localhost:6379'
+CELERY_BROKER_URL = env('REDIS_TEST')
 
 
 # Database
@@ -86,7 +86,7 @@ CELERY_BROKER_URL = 'redis://localhost:6379'
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
-        'NAME': 'delays', #should be 'BART-db'?
+        'NAME': 'BART-db', #should be 'BART-db'?
         'CLIENT': {
             'host': env('MONGO_CONNECT'),
             # 'username': 'BART0321',
@@ -95,6 +95,19 @@ DATABASES = {
         },
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'djongo',
+#         'NAME': 'delays', #should be 'BART-db'?
+#         'CLIENT': {
+#             'host': env('MONGO_CONNECT'),
+#             # 'username': 'BART0321',
+#             # 'password': env('MONGO_PASS'),
+#             # 'authMechanism': 'SCRAM-SHA-1',
+#         },
+#     }
+# }
 
 # DATABASES = {
 #     'default': {

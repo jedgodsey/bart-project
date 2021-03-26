@@ -27,6 +27,7 @@ def get_train():
     avg_delay = reduce(do_sum, delays) / num_stations
     # avg_delay = str(reduce(do_sum, delays) / num_stations)
     datum = Delays(amount=avg_delay)
+    print('right here: ', datum)
     datum.save()
     
     async_to_sync(channel_layer.group_send)('trains', {'type': 'send_trains', 'text': str(avg_delay)})
