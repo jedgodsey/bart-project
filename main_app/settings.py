@@ -78,7 +78,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'main_app.wsgi.application'
 ASGI_APPLICATION = 'main_app.asgi.application'
 
-CELERY_BROKER_URL = 'redis://localhost:6379'
+CELERY_BROKER_URL = env('REDIS_URL')
 
 
 # Database
