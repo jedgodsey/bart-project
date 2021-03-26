@@ -5,7 +5,7 @@ let trainData = {
   data: {
       labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
       datasets: [{
-          label: '# of Votes',
+          label: 'System-wide Delay in minutes',
           data: [12, 19, 3, 5, 2, 3],
           backgroundColor: [
               'rgba(255, 99, 132, 0.2)',
@@ -27,13 +27,23 @@ let trainData = {
       }]
   },
   options: {
-      // scales: {
-      //     yAxes: [{
-      //         ticks: {
-      //             beginAtZero: true
-      //         }
-      //     }]
-      // }
+      scales: {
+          yAxes: [{
+              ticks: {
+                  beginAtZero: false
+              }
+          }],
+          xAxes: [
+            {
+              ticks: {
+                display: true
+              },
+              gridLines: {
+                display: false
+              }
+            }
+          ]
+      }
   }
 }
 
@@ -44,7 +54,25 @@ socket.onmessage = (event) => {
     let trains = JSON.parse(event.data)
     // let trains = event.data
 
-    trainData.data.datasets[0].data = trains
+    let finalTrains = trains.map(item => item.fields.amount)
+
+    // let marks = finalTrains.map(item => 'x')
+
+    let divisor = finalTrains.length / 10
+
+    let marks = []
+
+    for (let i = 0; i < finalTrains.length; i++) {
+      if (i % divisor == 0) {
+        marks.push('x')
+      } else {
+        marks.push('')
+      }
+    }
+
+    trainData.data.datasets[0].data = finalTrains
+
+    trainData.data.labels = marks
     // document.querySelector('#trains').innerText = trains;
     myChart.update()
 }

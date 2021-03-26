@@ -4,6 +4,8 @@ from asgiref.sync import async_to_sync
 from channels.layers import get_channel_layer
 from celery import shared_task
 from .models import Delays
+from django.core import serializers
+
 
 channel_layer = get_channel_layer()
 
@@ -32,9 +34,14 @@ def get_train():
         return str(n)
 
     # all_data = Delays.objects.all()
-    all_data = Delays.objects.values_list('amount', flat=True)
+
+
+    all_data = serializers.serialize('json', Delays.objects.all(), fields=('amount'))
 
     # good_data = map(info, all_data)
-    print('this worked: ', all_data)
+    # print('this worked: ', all_data)
+
+    test = [12, 19, 3, 50, 2, 3]
     
-    async_to_sync(channel_layer.group_send)('trains', {'type': 'send_trains', 'text': str(avg_delay)})
+    async_to_sync(channel_layer.group_send)('trains', {'type': 'send_trains', 'text': str(all_data)})
+    # async_to_sync(channel_layer.group_send)('trains', {'type': 'send_trains', 'text': str(avg_delay)})
