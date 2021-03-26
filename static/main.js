@@ -3,20 +3,22 @@ var ctx = document.getElementById('myChart').getContext('2d');
 let trainData = {
   type: 'line',
   data: {
-      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+      labels: [],
+      // labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
       datasets: [{
-          label: 'System-wide Delay in minutes',
-          data: [12, 19, 3, 5, 2, 3],
+          label: 'Average System-wide Delay in minutes',
+          data: new Array(500),
+          // data: [1, 1, 1, 1, 1, 1],
           backgroundColor: [
-              'rgba(255, 99, 132, 0.2)',
+              // 'rgba(255, 99, 132, 0.2)',
               'rgba(54, 162, 235, 0.2)',
-              'rgba(255, 206, 86, 0.2)',
-              'rgba(75, 192, 192, 0.2)',
-              'rgba(153, 102, 255, 0.2)',
-              'rgba(255, 159, 64, 0.2)'
+              // 'rgba(255, 206, 86, 0.2)',
+              // 'rgba(75, 192, 192, 0.2)',
+              // 'rgba(153, 102, 255, 0.2)',
+              // 'rgba(255, 159, 64, 0.2)'
           ],
           borderColor: [
-              'rgba(255, 99, 132, 1)',
+              // 'rgba(255, 99, 132, 1)',
               'rgba(54, 162, 235, 1)',
               'rgba(255, 206, 86, 1)',
               'rgba(75, 192, 192, 1)',
@@ -55,16 +57,18 @@ socket.onmessage = (event) => {
     // let trains = event.data
 
     let finalTrains = trains.map(item => item.fields.amount)
+    let times = trains.map(item => item.fields.time)
 
     // let marks = finalTrains.map(item => 'x')
 
-    let divisor = finalTrains.length / 10
+    let divisor = Math.floor(finalTrains.length / 15)
 
     let marks = []
 
-    for (let i = 0; i < finalTrains.length; i++) {
+    for (let i = 0; i < times.length; i++) {
       if (i % divisor == 0) {
-        marks.push('x')
+        let moment = new Date(times[i])
+        marks.push(`${moment.getHours()}:${moment.getMinutes()}`)
       } else {
         marks.push('')
       }

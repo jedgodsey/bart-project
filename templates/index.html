@@ -7,22 +7,77 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+        <link rel="canonical" href="https://getbootstrap.com/docs/4.1/examples/sticky-footer-navbar/">
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://getbootstrap.com/docs/4.1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    {% comment %} <link href="sticky-footer-navbar.css" rel="stylesheet"> {% endcomment %}
+    <link href="./static/style.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js" integrity="sha512-d9xgZrVZpmmQlfonhQUvTR7lMPtO7NkZMkA0ABN3PHCbKA5nqylQ/yWlFAyY6hYgdF1Qh6nYiuADWwKB4C2WSw==" crossorigin="anonymous"></script>
     <title>BART App</title>
 </head>
 <body>
-    <div class="container">
-        <div class="row">
-            <div class="col-10 mx-auto mt-5">
-                <h3 id="trains">
-                    {{ text }}
-                    <canvas id="myChart" width="400" height="400"></canvas>
-                </h3>
+
+        <header>
+      <!-- Fixed navbar -->
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="#">BART BEHIND</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled" href="#">History</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled" href="#">Performance Standards</a>
+            </li>
+          </ul>
+          <form class="form-inline mt-2 mt-md-0">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search Stations" aria-label="Search Stations">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Go</button>
+          </form>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Begin page content -->
+    <main>
+        <div class="container">
+    <div id='case'>
+    <div id="title">
+      <h1>Stay Ahead with Bart Behind</h1>
+      <h4>We track system-wide BART delays so you can plan your day.</h4>
+    </div>
+    </div>
+            <div class="row">
+                <div class="col-10 mx-auto mt-5">
+                        <canvas id="myChart" width="400" height="200"></canvas>
+                </div>
             </div>
         </div>
-    </div>
-    <script src="{% static 'main.js' %}">
-        
-    </script>
+    </main>
+
+    <footer>
+    {% comment %} <footer class="footer"> {% endcomment %}
+      <div class="container">
+        <span class="text-muted">BART Behind is in no way affiliated with Bay Area Rapid Transit.  You  may view their official website <a href="https://www.bart.gov/">here</a>.</span>
+      </div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="https://getbootstrap.com/docs/4.1/assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+    <script src="https://getbootstrap.com/docs/4.1/assets/js/vendor/popper.min.js"></script>
+    <script src="https://getbootstrap.com/docs/4.1/dist/js/bootstrap.min.js"></script>
+    <script src="{% static 'main.js' %}"></script>
 </body>
 </html>
