@@ -30,7 +30,7 @@ SECRET_KEY = env("SECRET_KEY")
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'herokuapp.com',
+    'bart-application.herokuapp.com',
     '127.0.0.1:8000'
 ]
 
@@ -134,7 +134,7 @@ CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
         'CONFIG': {
-            'hosts': [os.environ.get('REDIS_URL', 'redis://localhost:6579')]
+            'hosts': [env('REDIS_URL')]  #, 'redis://localhost:6579')?
         }
     }
 }
