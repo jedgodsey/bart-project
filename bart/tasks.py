@@ -25,9 +25,16 @@ def get_train():
         return x + y
     num_stations = len(stations)
     avg_delay = reduce(do_sum, delays) / num_stations
-    # avg_delay = str(reduce(do_sum, delays) / num_stations)
-    datum = Delays(amount=avg_delay)
-    print('right here: ', datum)
-    datum.save()
+    # datum = Delays(amount=avg_delay)
+    # datum.save()
+
+    def info(n):
+        return str(n)
+
+    # all_data = Delays.objects.all()
+    all_data = Delays.objects.values_list('amount', flat=True)
+
+    # good_data = map(info, all_data)
+    print('this worked: ', all_data)
     
     async_to_sync(channel_layer.group_send)('trains', {'type': 'send_trains', 'text': str(avg_delay)})
