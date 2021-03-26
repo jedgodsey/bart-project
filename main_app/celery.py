@@ -10,7 +10,7 @@ app.config_from_object('django.conf:settings', namespace='CELERY')
 app.conf.beat_schedule = {
     'get_train_1s': {
         'task': 'bart.tasks.get_train',
-        'schedule': 5.0
+        'schedule': 60
     }
 }
 
