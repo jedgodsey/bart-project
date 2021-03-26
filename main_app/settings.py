@@ -10,7 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
-import environ
+import environ, os
 from pathlib import Path
 
 env = environ.Env()
@@ -30,7 +30,8 @@ SECRET_KEY = env("SECRET_KEY")
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    # 'bart-application.herokuapp.com',
+    'herokuapp.com',
+    '127.0.0.1:8000'
 ]
 
 INSTALLED_APPS = [
@@ -133,7 +134,7 @@ CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
         'CONFIG': {
-            'hosts': [('127.0.0.1', 6379)]
+            'hosts': [os.environ.get('REDIS_URL', '127.0.0.1', 6379)]
         }
     }
 }
@@ -175,6 +176,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') #needed?
 STATICFILES_DIRS = [
     BASE_DIR.joinpath('static')
 ]
